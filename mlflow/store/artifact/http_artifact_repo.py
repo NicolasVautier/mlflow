@@ -60,7 +60,7 @@ class HttpArtifactRepository(ArtifactRepository):
 
     def _download_file(self, remote_file_path, local_path):
         endpoint = posixpath.join("/", remote_file_path)
-        resp = http_request(self._host_creds, endpoint, "GET", stream=True, timeout=10)
+        resp = http_request(self._host_creds, endpoint, "GET", stream=True, timeout=120)
         augmented_raise_for_status(resp)
         with open(local_path, "wb") as f:
             chunk_size = 1024 * 1024  # 1 MB
